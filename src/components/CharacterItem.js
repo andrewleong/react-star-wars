@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaMars, FaVenus, FaGenderless } from 'react-icons/fa';
 
 const CharacterItem = ({ character, id }) => {
@@ -14,11 +15,13 @@ const CharacterItem = ({ character, id }) => {
 
     return (
         <div className="col-sm-12 character-item-container">
-            <div className="card each-card">
-                {getGender(character.gender)}
-                <h3>{character.name}</h3>
-                <h4>{character.birth_year}</h4>
-            </div>
+            <Link to={`/character/${id}`}>
+                <div className="card each-card">
+                    {getGender(character.gender)}
+                    <h3>{character.name}</h3>
+                    <h4>{character.birth_year}</h4>
+                </div>
+            </Link>
         </div>
     )
 };
