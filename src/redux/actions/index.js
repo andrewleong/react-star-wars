@@ -33,15 +33,25 @@ export const setTotalPages = (totalPages) => {
     }
 };
 
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const setCurrentPage = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    }
+};
+
 export const actionGetCharacters = (currentPage) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         dispatch(setCharactersLoading(true));
         try {
+            currentPage = currentPage || getState().currentPage;
             const { results=[], count } = await getCharacters(currentPage);
             const characters = results;
             const totalPages = Math.round(count / 10);
             dispatch(setCharacters(characters));
             dispatch(setTotalPages(totalPages));
+            dispatch(setCurrentPage(currentPage));
         } catch (error) {
             dispatch(setCharactersError(error));
         } finally {

@@ -13,8 +13,9 @@ class App extends React.Component {
         super(props);
 
         this.state={
-            activePage: 1
         }
+
+        this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     handlePageChange({ selected }) {
@@ -23,12 +24,13 @@ class App extends React.Component {
     }
 
     render() {
-        const { characters, totalPages } = this.props;
+        const { characters, totalPages, currentPage } = this.props;
         return (
             <div className="container">
                 <h1>Star Wars Characters!</h1>
                 <CharacterList characters={characters} />
                 <ReactPaginate
+                    initialPage={currentPage-1}
                     previousLabel={'<'}
                     nextLabel={'>'}
                     breakLabel={'...'}
@@ -36,7 +38,7 @@ class App extends React.Component {
                     pageCount={totalPages || 1}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
-                    onPageChange={(page) => this.handlePageChange(page)}
+                    onPageChange={this.handlePageChange}
                     containerClassName={'pagination'}
                     subContainerClassName={'pages pagination'}
                     activeClassName={'active'}
@@ -51,10 +53,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const { characters, totalPages } = state;
+    const { characters, totalPages, currentPage } = state;
     return {
         characters,
-        totalPages
+        totalPages,
+        currentPage,
     };
 }
 

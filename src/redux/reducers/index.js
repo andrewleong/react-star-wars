@@ -3,11 +3,13 @@ import {
     SET_CHARACTERS,
     SET_CHARACTERS_ERROR,
     SET_TOTAL_PAGES,
+    SET_CURRENT_PAGE,
 } from "../actions";
 
 const INITIAL_STATE = {
     characters: [],
-    totalPages: 1
+    totalPages: 1,
+    currentPage: 1
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -25,6 +27,14 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 totalPages
+            }
+        }
+
+        case SET_CURRENT_PAGE: {
+            const { currentPage } = action;
+            return {
+                ...state,
+                currentPage
             }
         }
 

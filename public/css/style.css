@@ -48,3 +48,7 @@ li {
     padding: 0 10px;
     font-size: 1.5em;
 }
+
+.active {
+    background: white;
+}
