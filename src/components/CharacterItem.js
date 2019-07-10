@@ -2,7 +2,7 @@ import React from 'react';
 
 const CharacterItem = ({ character }) => {
     return (
-        <div className="col-sm-12 movie-item-container">
+        <div className="col-sm-12 character-item-container">
             <h3>{character.name}</h3>
         </div>
     )

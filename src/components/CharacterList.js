@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterItem from './CharacterItem';
 
 const CharacterList = ({ characters }) => {
-    console.log("characters", characters)
+
     const generateCharacterList = (characters) => {
         if(characters.length){
             return characters.map( (item, index) => {

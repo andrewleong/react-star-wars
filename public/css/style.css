@@ -1,0 +1,17 @@
+:root {
+    --primary-bg-color: #221f2e;
+    --primary-font-color: #fee123;
+}
+
+body {
+    background-color: var(--primary-bg-color);
+    color: #fff;
+}
+
+h1 {
+    color: var(--primary-font-color);
+}
+
+.character-item-container {
+    margin: 0 auto;
+}
