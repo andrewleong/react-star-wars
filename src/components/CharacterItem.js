@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaMars, FaVenus, FaGenderless } from 'react-icons/fa';
 
-const CharacterItem = ({ character }) => {
+const CharacterItem = ({ character, id }) => {
     const getGender = (gender) => {
         if(gender === 'male'){
             return <FaMars />
@@ -11,6 +11,7 @@ const CharacterItem = ({ character }) => {
             return <FaGenderless />
         }
     }
+
     return (
         <div className="col-sm-12 character-item-container">
             <div className="card each-card">

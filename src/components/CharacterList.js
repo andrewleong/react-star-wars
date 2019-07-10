@@ -6,10 +6,13 @@ const CharacterList = ({ characters }) => {
     const generateCharacterList = (characters) => {
         if(characters.length){
             return characters.map( (item, index) => {
+                const { url } = item;
+                const id = url.split("/").slice(-2).join("");
                 return (
                     <div key={index}>
                         <CharacterItem
                             character={item}
+                            id={id}
                         />
                     </div>
                 )
