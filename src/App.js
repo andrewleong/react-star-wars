@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 
+import {
+    actionGetCharacters
+} from './redux/actions';
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +22,20 @@ class App extends React.Component {
             </div>
         );
     }
+
+    componentDidMount() {
+        this.props.getCharacters();
+    }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
+const mapStateToProps = (state, ownProps) => {
+    return {
 
-  };
+    };
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+    getCharacters: () => dispatch(actionGetCharacters())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
