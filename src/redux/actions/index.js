@@ -2,10 +2,10 @@ import { getCharacters } from '../../api';
 
 
 export const SET_CHARACTERS_LOADING = 'SET_CHARACTERS_LOADING';
-export const setCharactersLoading = (characters) => {
+export const setCharactersLoading = (isLoading) => {
     return {
         type: SET_CHARACTERS_LOADING,
-        characters
+        isLoading
     }
 };
 

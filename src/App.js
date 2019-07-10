@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import { CylinderSpinLoader } from 'react-css-loaders';
 
 import CharacterList from './components/CharacterList';
 
@@ -24,9 +25,15 @@ class App extends React.Component {
     }
 
     render() {
-        const { characters, totalPages, currentPage } = this.props;
+        const { characters, totalPages, currentPage, isLoading } = this.props;
         return (
             <div className="container">
+                { isLoading &&
+                    <div className="loader-spinner">
+                        <div className="overlay"></div>
+                        <CylinderSpinLoader />
+                    </div>
+                }
                 <h1>Star Wars Characters!</h1>
                 <CharacterList characters={characters} />
                 <ReactPaginate
@@ -53,11 +60,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const { characters, totalPages, currentPage } = state;
+    const { characters, totalPages, currentPage, isLoading } = state;
     return {
         characters,
         totalPages,
         currentPage,
+        isLoading,
     };
 }
 

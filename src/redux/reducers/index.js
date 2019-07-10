@@ -9,7 +9,8 @@ import {
 const INITIAL_STATE = {
     characters: [],
     totalPages: 1,
-    currentPage: 1
+    currentPage: 1,
+    isLoading: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -35,6 +36,14 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentPage
+            }
+        }
+
+        case SET_CHARACTERS_LOADING: {
+            const { isLoading } = action;
+            return {
+                ...state,
+                isLoading
             }
         }
 
