@@ -1,29 +1,76 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import ReactPaginate from 'react-paginate';
+import { CylinderSpinLoader } from 'react-css-loaders';
+
+import CharacterList from './components/CharacterList';
+
+import {
+    actionGetCharacters,
+} from './redux/actions';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state={
-
         }
+
+        this.handlePageChange = this.handlePageChange.bind(this);
+    }
+
+    handlePageChange({ selected }) {
+        const currentPage = selected + 1;
+        this.props.getCharacters(currentPage);
     }
 
     render() {
+        const { characters, totalPages, currentPage, isLoading } = this.props;
         return (
-            <div className="App">
-
+            <div className="container">
+                { isLoading &&
+                    <div className="loader-spinner">
+                        <div className="overlay"></div>
+                        <CylinderSpinLoader />
+                    </div>
+                }
+                <h1>Star Wars Characters!</h1>
+                <CharacterList characters={characters} />
+                <ReactPaginate
+                    initialPage={currentPage-1}
+                    previousLabel={'<'}
+                    nextLabel={'>'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={totalPages || 1}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageChange}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                />
             </div>
         );
     }
+
+    componentDidMount() {
+        this.props.getCharacters();
+    }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-
-  };
+const mapStateToProps = state => {
+    const { characters, totalPages, currentPage, isLoading } = state;
+    return {
+        characters,
+        totalPages,
+        currentPage,
+        isLoading,
+    };
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+    getCharacters: (currentPage) => dispatch(actionGetCharacters(currentPage)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
