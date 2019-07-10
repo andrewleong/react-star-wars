@@ -7,7 +7,7 @@ const CharacterList = ({ characters }) => {
         if(characters.length){
             return characters.map( (item, index) => {
                 return (
-                    <div className="character-list-container" key={index}>
+                    <div key={index}>
                         <CharacterItem
                             character={item}
                         />
@@ -19,7 +19,9 @@ const CharacterList = ({ characters }) => {
 
     return (
         <div className="col-xs-6 col-md-12">
-            {generateCharacterList(characters)}
+            <div className="row character-list-container">
+                {generateCharacterList(characters)}
+            </div>
         </div>
     );
 };

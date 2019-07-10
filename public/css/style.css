@@ -1,5 +1,5 @@
 :root {
-    --primary-bg-color: #221f2e;
+    --primary-bg-color: #3f3b54;
     --primary-font-color: #fee123;
 }
 
@@ -12,6 +12,28 @@ h1 {
     color: var(--primary-font-color);
 }
 
+.character-list-container {
+    background-color:#221f2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .character-item-container {
-    margin: 0 auto;
+    /* margin: 0 auto; */
+}
+
+.card {
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -webkit-transition: .25s box-shadow;
+    transition: .25s box-shadow;
+    margin-bottom: 20px;
+    font-size: 18px;
+    background-color: #2e2b3f;
+}
+
+.each-card {
+    width: 200px;
+    height: 200px;
 }
