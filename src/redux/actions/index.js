@@ -29,9 +29,9 @@ export const actionGetCharacters = () => {
     return async (dispatch) => {
         dispatch(setCharactersLoading(true));
         try {
-            const characters = await getCharacters();
-            console.log("characters", characters)
-            // dispatch(setCharacters(characters);
+            const { results=[] } = await getCharacters();
+            const characters = results;
+            dispatch(setCharacters(characters));
         } catch (error) {
             dispatch(setCharactersError(error));
         } finally {
