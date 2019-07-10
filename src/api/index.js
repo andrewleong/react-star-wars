@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const CHARACTERS_PATH = 'https://swapi.co/api/people/';
+export const getCharacters = (currentPage=1) => {
+    const path = `https://swapi.co/api/people/?page=${currentPage}`;
 
-export const getCharacters = () => (
-    axios.get(CHARACTERS_PATH)
+    return axios.get(path)
         .then(res => res.data)
         .catch(errors => errors)
-)
+}

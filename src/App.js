@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import ReactPaginate from 'react-paginate';
+
 import CharacterList from './components/CharacterList';
 
 import {
-    actionGetCharacters
+    actionGetCharacters,
 } from './redux/actions';
 
 class App extends React.Component {
@@ -12,16 +13,34 @@ class App extends React.Component {
         super(props);
 
         this.state={
-
+            activePage: 1
         }
     }
 
+    handlePageChange({ selected }) {
+        const currentPage = selected + 1;
+        this.props.getCharacters(currentPage);
+    }
+
     render() {
-        const { characters } = this.props;
+        const { characters, totalPages } = this.props;
         return (
             <div className="container">
                 <h1>Star Wars Characters!</h1>
                 <CharacterList characters={characters} />
+                <ReactPaginate
+                    previousLabel={'<'}
+                    nextLabel={'>'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={totalPages || 1}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={(page) => this.handlePageChange(page)}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                />
             </div>
         );
     }
@@ -32,14 +51,15 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const { characters } = state;
+    const { characters, totalPages } = state;
     return {
-        characters
+        characters,
+        totalPages
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-    getCharacters: () => dispatch(actionGetCharacters())
+    getCharacters: (currentPage) => dispatch(actionGetCharacters(currentPage)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

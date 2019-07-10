@@ -25,13 +25,23 @@ export const setCharactersError = (error) => {
     }
 };
 
-export const actionGetCharacters = () => {
+export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
+export const setTotalPages = (totalPages) => {
+    return {
+        type: SET_TOTAL_PAGES,
+        totalPages
+    }
+};
+
+export const actionGetCharacters = (currentPage) => {
     return async (dispatch) => {
         dispatch(setCharactersLoading(true));
         try {
-            const { results=[] } = await getCharacters();
+            const { results=[], count } = await getCharacters(currentPage);
             const characters = results;
+            const totalPages = Math.round(count / 10);
             dispatch(setCharacters(characters));
+            dispatch(setTotalPages(totalPages));
         } catch (error) {
             dispatch(setCharactersError(error));
         } finally {
@@ -39,4 +49,5 @@ export const actionGetCharacters = () => {
         }
     }
 }
+
 
