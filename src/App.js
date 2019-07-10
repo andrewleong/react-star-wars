@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import CharacterList from './components/CharacterList';
 
 import {
     actionGetCharacters
@@ -16,9 +17,11 @@ class App extends React.Component {
     }
 
     render() {
+        const { characters } = this.props;
         return (
-            <div className="App">
-
+            <div className="container">
+                <h1>Star Wars Characters!</h1>
+                <CharacterList characters={characters} />
             </div>
         );
     }
