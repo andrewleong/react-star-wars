@@ -77,7 +77,9 @@ li {
 .character-detail-container {
     background: #221f2e;
 
-    margin: 40px;
+    /* margin: 100px; */
+    max-width: 900px;
+    margin: 10px auto;
     /* max-width: 1180px;
     border-radius: 20px;
     margin-top: 30px;
@@ -111,18 +113,19 @@ li {
 }
 
 .character-content h3 {
-   font-weight: bold;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .character-content h4 {
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.2em;
  }
 
 .character-content.main {
     margin: 20px;
     display:flex;
-    flex: 0 0 60%;
+    flex: 1 0 40%;
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
@@ -132,7 +135,7 @@ li {
    flex-shrink: 3; */
 }
 
-.character-detail-container .gender-icon {
+.character-detail-container .icon {
     width: 100%;
     font-size: 2em;
     text-align: center;
@@ -166,3 +169,66 @@ span {
     vertical-align: middle;
     border-radius: 2px; */
 }
+
+
+.character-content.species {
+    margin: 20px;
+    display:flex;
+    flex: 1;
+    flex-flow: row wrap;
+    flex-direction: column;
+    align-items: center;
+
+    /* background: tomato; */
+   /* flex-basis: 200px;
+   flex-shrink: 3; */
+}
+
+.character-content.homeworld {
+    margin: 20px;
+    display:flex;
+    /* flex: 1; */
+    flex-flow: row wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.character-content.films {
+    margin: 20px;
+    display:flex;
+    /* flex: 1; */
+    flex-flow: row wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-container {
+    position: relative;
+    width: 150px;
+    margin: 0 auto;
+    background: #454254;
+    height: 15px;
+    border-radius: 10px;
+    padding: 3px 5px;
+}
+
+  .avg-height {
+    position: absolute;
+    height: 10px;
+    max-width: 100%;
+    border-radius: 8px;
+    background: #829bef;
+}
+
+
+.circle {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background: red;
+  }
+

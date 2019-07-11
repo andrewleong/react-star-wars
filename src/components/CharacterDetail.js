@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
-import { FaMars, FaVenus, FaGenderless } from 'react-icons/fa';
+import {
+    FaMars,
+    FaVenus,
+    FaGenderless,
+    FaUserCircle
+} from 'react-icons/fa';
 
 import {
     actionGetHomeWorld,
@@ -42,7 +47,7 @@ class CharacterDetail extends React.Component {
                 </header>
 
                 <div className="character-content main">
-                    <div className="gender-icon">
+                    <div className="icon">
                         {getGender(character.gender)}
                     </div>
                     <h3>{character.name}</h3>
@@ -85,27 +90,83 @@ class CharacterDetail extends React.Component {
                     </div>
                 </div>
 
-                <div className="character-content">
+                <div className="character-content species">
                     <h3>Species</h3>
                     {
                         species && species.map((s, index) => {
-                            return <p key={index}>{s.name}</p>
+                            return (
+                                <div key={index}>
+                                    <div className="icon">
+                                        <FaUserCircle />
+                                    </div>
+                                    <h4>Type:
+                                        <span>
+                                            {s.name}
+                                        </span>
+                                    </h4>
+                                    <h4>Classification:
+                                        <span>
+                                            {s.classification}
+                                        </span>
+                                    </h4>
+                                    <h4>Designation:
+                                        <span>
+                                            {s.designation}
+                                        </span>
+                                    </h4>
+                                    <h4>
+                                        Avg Height:
+                                        <div className="progress-container">
+                                            <span className="avg-height" style={{width: `${s.average_height}%`}}>
+                                                {s.average_height = 'n/a' ? '0%': s.average_height }
+                                            </span>
+                                        </div>
+                                    </h4>
+
+                                    <h4>
+                                        Avg Lifespan:
+                                        <div className="progress-container">
+                                            <span className="avg-height" style={{width: `${s.average_height}%`}}>
+                                                {s.average_lifespan = 'indefinite' ? 'indefinite': s.average_lifespan }
+                                            </span>
+                                        </div>
+                                    </h4>
+                                </div>
+                            )
                         })
                     }
                 </div>
 
-                    <div className="character-content">
-                        <h3>Home World</h3>
-                        <p>{homeWorld.name}</p>
-                    </div>
-                    <div className="character-content">
-                        <h3>Films</h3>
-                        {
-                            films && films.map((film, index) => {
-                                return <p key={index}>{film.title}</p>
-                            })
-                        }
-                    </div>
+                <div className="character-content homeworld">
+                    <h3>Home World</h3>
+                    <h4>Name: {homeWorld.name}</h4>
+                    <h4>Climate: {homeWorld.climate}</h4>
+                    <h4>
+                        Diameter
+                        <div className="circle">
+                            {homeWorld.diameter}
+                        </div>
+                    </h4>
+                    <h4>
+                        Population
+                        <span>
+                            {homeWorld.population}
+                        </span>
+                    </h4>
+                </div>
+
+                <div className="character-content films">
+                    <h3>Films</h3>
+                    {
+                        films && films.map((film, index) => {
+                            return (
+                                <div key={index}>
+                                    <p>{film.title}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
 
             </div>
         );
