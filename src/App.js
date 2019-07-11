@@ -55,7 +55,9 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getCharacters();
+        if(!this.props.characters.length){
+            this.props.getCharacters();
+        }
     }
 }
 
