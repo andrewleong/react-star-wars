@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import {
     getCharacters,
+    getCharacter,
     getHomeWorld,
     getFilms,
     getSpecies,
@@ -47,6 +48,14 @@ export const setCurrentPage = (currentPage) => {
     }
 };
 
+export const SET_CHARACTER = 'SET_CHARACTER';
+export const setCharacter = (character) => {
+    return {
+        type: SET_CHARACTER,
+        character
+    }
+};
+
 export const SET_HOME_WORLD = 'SET_HOME_WORLD';
 export const setHomeWorld = (homeWorld) => {
     return {
@@ -82,6 +91,24 @@ export const actionGetCharacters = (currentPage) => {
             dispatch(setCharacters(characters));
             dispatch(setTotalPages(totalPages));
             dispatch(setCurrentPage(currentPage));
+
+        } catch (error) {
+            dispatch(setCharactersError(error));
+        } finally {
+            dispatch(setCharactersLoading(false));
+        }
+    }
+}
+
+export const actionGetCharacter = (id, existingCharacter) => {
+    return async (dispatch) => {
+        dispatch(setCharactersLoading(true));
+        try {
+            let character = existingCharacter;
+            if(!existingCharacter){
+                character = await getCharacter(id);
+            }
+            dispatch(setCharacter(character));
 
         } catch (error) {
             dispatch(setCharactersError(error));

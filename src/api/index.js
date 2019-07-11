@@ -8,6 +8,14 @@ export const getCharacters = (currentPage=1) => {
         .catch(errors => errors)
 }
 
+export const getCharacter = (id) => {
+    const path = `https://swapi.co/api/people/${id}`;
+
+    return axios.get(path)
+        .then(res => res.data)
+        .catch(errors => errors)
+}
+
 export const getHomeWorld = (path) => {
 
     return axios.get(path)

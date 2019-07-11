@@ -4,6 +4,7 @@ import {
     SET_CHARACTERS_ERROR,
     SET_TOTAL_PAGES,
     SET_CURRENT_PAGE,
+    SET_CHARACTER,
     SET_HOME_WORLD,
     SET_FILMS,
     SET_SPECIES,
@@ -11,6 +12,7 @@ import {
 
 const INITIAL_STATE = {
     characters: {},
+    character: {},
     totalPages: 1,
     currentPage: 1,
     isLoading: false,
@@ -50,6 +52,14 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isLoading
+            }
+        }
+
+        case SET_CHARACTER: {
+            const { character } = action;
+            return {
+                ...state,
+                character
             }
         }
 

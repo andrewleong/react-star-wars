@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'underscore';
 
 import {
     actionGetHomeWorld,
     actionGetFilms,
     actionGetSpecies,
+    actionGetCharacter,
 } from '../redux/actions';
 
 class CharacterDetail extends React.Component {
@@ -22,33 +24,43 @@ class CharacterDetail extends React.Component {
     }
 
     async componentDidMount(){
-        const { location, characters } = this.props;
+        const { location, characters, match } = this.props;
         const { state } = location;
         const { name } = state;
-        const character = characters[name];
+        const existingCharacter = characters[name];
+        const { params={} } = match;
+        const { id } = params;
+        await this.props.getCharacter(id, existingCharacter);
+    }
 
-        if(character){
+    async componentDidUpdate(prevProps){
+        const { character } = this.props;
+        if(_.isEmpty(prevProps.character) && !_.isEmpty(character)){
             const { films, homeworld, species } = character;
             await this.props.getHomeWorld(homeworld);
             await this.props.getFilms(films);
             await this.props.getSpecies(species);
         }
-
     }
 }
 
 const mapStateToProps = state => {
-    const { characters } = state;
+    const { characters, character, films, species, homeWorld } = state;
     console.log("state", state)
     return {
-        characters
+        characters,
+        character,
+        films,
+        species,
+        homeWorld
     };
 }
 
 const mapDispatchToProps = dispatch => ({
+    getCharacter: (id, existingCharacter) => dispatch(actionGetCharacter(id, existingCharacter)),
     getHomeWorld: (path) => dispatch(actionGetHomeWorld(path)),
-    getFilms: (path) => dispatch(actionGetFilms(path)),
-    getSpecies: (path) => dispatch(actionGetSpecies(path))
+    getFilms: (paths) => dispatch(actionGetFilms(paths)),
+    getSpecies: (paths) => dispatch(actionGetSpecies(paths))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterDetail);
