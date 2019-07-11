@@ -1,4 +1,10 @@
-import { getCharacters } from '../../api';
+import _ from 'underscore';
+import {
+    getCharacters,
+    getHomeWorld,
+    getFilms,
+    getSpecies,
+} from '../../api';
 
 
 export const SET_CHARACTERS_LOADING = 'SET_CHARACTERS_LOADING';
@@ -41,17 +47,93 @@ export const setCurrentPage = (currentPage) => {
     }
 };
 
+export const SET_HOME_WORLD = 'SET_HOME_WORLD';
+export const setHomeWorld = (homeWorld) => {
+    return {
+        type: SET_HOME_WORLD,
+        homeWorld
+    }
+};
+
+export const SET_FILMS = 'SET_FILMS';
+export const setFilms = (films) => {
+    return {
+        type: SET_FILMS,
+        films
+    }
+}
+
+export const SET_SPECIES = 'SET_SPECIES';
+export const setSpecies = (species) => {
+    return {
+        type: SET_SPECIES,
+        species
+    }
+}
+
 export const actionGetCharacters = (currentPage) => {
     return async (dispatch, getState) => {
         dispatch(setCharactersLoading(true));
         try {
             currentPage = currentPage || getState().currentPage;
             const { results=[], count } = await getCharacters(currentPage);
-            const characters = results;
+            const characters = _.indexBy(results, "name");
             const totalPages = Math.round(count / 10);
             dispatch(setCharacters(characters));
             dispatch(setTotalPages(totalPages));
             dispatch(setCurrentPage(currentPage));
+
+        } catch (error) {
+            dispatch(setCharactersError(error));
+        } finally {
+            dispatch(setCharactersLoading(false));
+        }
+    }
+}
+
+export const actionGetHomeWorld = (path) => {
+    return async (dispatch) => {
+        dispatch(setCharactersLoading(true));
+        try {
+            const homeWorld = await getHomeWorld(path);
+            dispatch(setHomeWorld(homeWorld));
+
+        } catch (error) {
+            dispatch(setCharactersError(error));
+        } finally {
+            dispatch(setCharactersLoading(false));
+        }
+    }
+}
+
+export const actionGetFilms = (paths) => {
+    return async (dispatch) => {
+        dispatch(setCharactersLoading(true));
+        try {
+            let films = [];
+            if(paths.length) {
+                films = await Promise.all(paths.map(path => getFilms(path)))
+            }
+            dispatch(setFilms(films));
+
+        } catch (error) {
+            dispatch(setCharactersError(error));
+        } finally {
+            dispatch(setCharactersLoading(false));
+        }
+    }
+}
+
+export const actionGetSpecies = (paths) => {
+    return async (dispatch) => {
+        dispatch(setCharactersLoading(true));
+        try {
+            let species = [];
+            if(paths.length) {
+                species = await Promise.all(paths.map(path => getSpecies(path)))
+            }
+            dispatch(setSpecies(species));
+
         } catch (error) {
             dispatch(setCharactersError(error));
         } finally {

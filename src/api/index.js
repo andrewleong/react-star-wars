@@ -7,3 +7,25 @@ export const getCharacters = (currentPage=1) => {
         .then(res => res.data)
         .catch(errors => errors)
 }
+
+export const getHomeWorld = (path) => {
+
+    return axios.get(path)
+        .then(res => res.data)
+        .catch(errors => errors)
+}
+
+export const getFilms = (path) => {
+
+    return axios.get(path)
+        .then(res => res.data)
+        .catch(errors => errors)
+}
+
+
+export const getSpecies = (path) => {
+
+    return axios.get(path)
+        .then(res => res.data)
+        .catch(errors => errors)
+}

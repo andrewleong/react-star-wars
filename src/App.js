@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { CylinderSpinLoader } from 'react-css-loaders';
+import _ from 'underscore';
 
 import CharacterList from './components/CharacterList';
 
@@ -55,7 +56,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        if(!this.props.characters.length){
+        if(_.isEmpty(this.props.characters)){
             this.props.getCharacters();
         }
     }
