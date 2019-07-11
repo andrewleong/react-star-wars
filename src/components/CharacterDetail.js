@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
+import { FaMars, FaVenus, FaGenderless } from 'react-icons/fa';
 
 import {
     actionGetHomeWorld,
@@ -23,31 +24,67 @@ class CharacterDetail extends React.Component {
             species
         } = this.props;
         console.log("props", this.props)
+
+        const getGender = (gender) => {
+            if(gender === 'male'){
+                return <FaMars />
+            } else if(gender === 'female'){
+                return <FaVenus />
+            } else {
+                return <FaGenderless />
+            }
+        }
+
         return (
             <div className="character-detail-container">
-                <h2>Character Details</h2>
-                <div className="character-content">
-                    <h3>Name: {character.name}</h3>
-                    <p>{character.gender}</p>
-                    <p>{character.hair_color}</p>
-                    <p>{character.height}</p>
-                    <p>{character.mass}</p>
-                    <p>{character.skin_color}</p>
-                    <p>{character.birth_year}</p>
-                    <p>{character.eye_color}</p>
+                <header className="header">
+                    <h2>Character Details</h2>
+                </header>
+
+                <div className="character-content main">
+                    <div className="gender-icon">
+                        {getGender(character.gender)}
+                    </div>
+                    <h3>{character.name}</h3>
+                    <div className="square">
+                        <h4>Birth Year
+                            <span>
+                                {character.birth_year}
+                            </span>
+                        </h4>
+                        <h4>
+                            Hair Color
+                            <span style={{ background: character.hair_color }}>
+                                {character.hair_color}
+                            </span>
+                        </h4>
+                        <h4>
+                            Height
+                            <span>
+                                {character.height} cm
+                            </span>
+                        </h4>
+                        <h4>
+                            Weight
+                            <span>
+                                {character.mass} kg
+                            </span>
+                        </h4>
+                        <h4>
+                            Skin Color
+                            <span>
+                                {character.skin_color}
+                            </span>
+                        </h4>
+                        <h4>
+                            Eye Color
+                            <span>
+                                {character.eye_color}
+                            </span>
+                        </h4>
+                    </div>
                 </div>
-                <div className="character-content">
-                    <h3>Home World</h3>
-                    <p>{homeWorld.name}</p>
-                </div>
-                <div className="character-content">
-                    <h3>Films</h3>
-                    {
-                        films && films.map((film, index) => {
-                            return <p key={index}>{film.title}</p>
-                        })
-                    }
-                </div>
+
                 <div className="character-content">
                     <h3>Species</h3>
                     {
@@ -56,6 +93,20 @@ class CharacterDetail extends React.Component {
                         })
                     }
                 </div>
+
+                    <div className="character-content">
+                        <h3>Home World</h3>
+                        <p>{homeWorld.name}</p>
+                    </div>
+                    <div className="character-content">
+                        <h3>Films</h3>
+                        {
+                            films && films.map((film, index) => {
+                                return <p key={index}>{film.title}</p>
+                            })
+                        }
+                    </div>
+
             </div>
         );
     }
