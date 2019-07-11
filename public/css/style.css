@@ -193,13 +193,18 @@ span {
     align-items: center;
 }
 
-.character-content.films {
-    margin: 20px;
+.character-content .films {
     display:flex;
-    /* flex: 1; */
+    margin: 20px;
+    /* width: 100%; */
     flex-flow: row wrap;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+}
+
+
+.film {
+    flex: 0 0 100%;
+
 }
 
 .progress-container {

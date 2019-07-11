@@ -5,7 +5,8 @@ import {
     FaMars,
     FaVenus,
     FaGenderless,
-    FaUserCircle
+    FaUserCircle,
+    FaFilm
 } from 'react-icons/fa';
 
 import {
@@ -155,13 +156,16 @@ class CharacterDetail extends React.Component {
                     </h4>
                 </div>
 
-                <div className="character-content films">
+                <div className="character-content">
                     <h3>Films</h3>
                     {
                         films && films.map((film, index) => {
                             return (
-                                <div key={index}>
-                                    <p>{film.title}</p>
+                                <div className="films" key={index}>
+                                    <div className="film">
+                                        <FaFilm />
+                                    </div>
+                                    <h4>{film.title}</h4>
                                 </div>
                             )
                         })
