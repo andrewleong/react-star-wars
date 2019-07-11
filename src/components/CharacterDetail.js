@@ -188,7 +188,7 @@ class CharacterDetail extends React.Component {
 
     async componentDidUpdate(prevProps){
         const { character } = this.props;
-        if(_.isEmpty(prevProps.character) && !_.isEmpty(character)){
+        if(!_.isEqual(prevProps.character, character)){
             const { films, homeworld, species } = character;
             await this.props.getHomeWorld(homeworld);
             await this.props.getFilms(films);
