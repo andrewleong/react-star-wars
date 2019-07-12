@@ -69,7 +69,7 @@ class CharacterDetail extends React.Component {
                         {getGender(character.gender)}
                     </div>
                     <h3>{character.name}</h3>
-                    <div className="square">
+                    <div className="info-content">
                         <h4>Birth Year
                             <span>
                                 {character.birth_year}
@@ -168,8 +168,8 @@ class CharacterDetail extends React.Component {
 
                 <div className="character-content homeworld">
                     <h3>Home World</h3>
-                    <div className="square">
-                        <div className="mini-square">
+                    <div className="info-content">
+                        <div className="inner">
                             <h2>{homeWorld.name}</h2>
                         </div>
                         <div className="planet">
@@ -177,7 +177,7 @@ class CharacterDetail extends React.Component {
                         </div>
                     </div>
 
-                    <div className="square">
+                    <div className="info-content">
                         <h4>Climate: <span>{homeWorld.climate}</span></h4>
                         <h4>Gravity: <span>{homeWorld.gravity}</span></h4>
                         <h4>
