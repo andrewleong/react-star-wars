@@ -134,7 +134,6 @@ li {
     padding: 5px;
     margin: auto;
     background: var(--card-bg-color);
-
     border-radius: 20px;
 
 }
@@ -152,7 +151,7 @@ li {
 .character-content.main {
     margin: 20px;
     display:flex;
-    flex: 1 0 40%;
+    flex: 1 0 30%;
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
@@ -192,8 +191,25 @@ li {
     align-items: center;
 }
 
+.character-content.species h4 {
+    padding: 5px 0;
+}
+
 .character-content.species span {
-    padding:10px;
+    padding: 10px;
+}
+
+.character-content.species .progress-container {
+    position: relative;
+    margin-top: 10px;
+    background: #454254;
+    height: 15px;
+    border-radius:10px;
+    padding: 3px 5px;
+}
+
+.character-content.species .progress-container span {
+    padding: 5px;
 }
 
 .character-content.homeworld {
@@ -242,21 +258,11 @@ li {
     padding: 10px 0;
 }
 
-.progress-container {
-    position: relative;
-    width: 150px;
-    margin: 0 auto;
-    background: #454254;
-    height: 15px;
-    border-radius: 10px;
-    padding: 3px 5px;
-}
-
-  .avg-height {
+.avg-height {
     position: absolute;
     height: 10px;
     max-width: 100%;
     border-radius: 8px;
-    background: #ffa7b7;
+    background: #ef98d0;
 }
 
