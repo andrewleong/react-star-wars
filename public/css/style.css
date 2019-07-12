@@ -41,7 +41,6 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     text-align: center;
-    /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
 }
 
 h2, h3 {
@@ -106,6 +105,7 @@ li {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    outline: 1px solid var(--primary-font-color);
 }
 
 .character-item-container .icon {
