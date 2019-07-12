@@ -9,7 +9,7 @@ import {
 
 
 export const SET_CHARACTERS_LOADING = 'SET_CHARACTERS_LOADING';
-export const setCharactersLoading = (isLoading) => {
+export const setLoading = (isLoading) => {
     return {
         type: SET_CHARACTERS_LOADING,
         isLoading
@@ -82,7 +82,7 @@ export const setSpecies = (species) => {
 
 export const actionGetCharacters = (currentPage) => {
     return async (dispatch, getState) => {
-        dispatch(setCharactersLoading(true));
+        dispatch(setLoading(true));
         try {
             currentPage = currentPage || getState().currentPage;
             const { results=[], count } = await getCharacters(currentPage);
@@ -95,14 +95,14 @@ export const actionGetCharacters = (currentPage) => {
         } catch (error) {
             dispatch(setError(error));
         } finally {
-            dispatch(setCharactersLoading(false));
+            dispatch(setLoading(false));
         }
     }
 }
 
 export const actionGetCharacter = (id, existingCharacter) => {
     return async (dispatch) => {
-        dispatch(setCharactersLoading(true));
+        dispatch(setLoading(true));
         try {
             let character = existingCharacter;
             if(!existingCharacter){
@@ -112,30 +112,24 @@ export const actionGetCharacter = (id, existingCharacter) => {
 
         } catch (error) {
             dispatch(setError(error));
-        } finally {
-            dispatch(setCharactersLoading(false));
         }
     }
 }
 
 export const actionGetHomeWorld = (path) => {
     return async (dispatch) => {
-        dispatch(setCharactersLoading(true));
         try {
             const homeWorld = await getHomeWorld(path);
             dispatch(setHomeWorld(homeWorld));
 
         } catch (error) {
             dispatch(setError(error));
-        } finally {
-            dispatch(setCharactersLoading(false));
         }
     }
 }
 
 export const actionGetFilms = (paths) => {
     return async (dispatch) => {
-        dispatch(setCharactersLoading(true));
         try {
             let films = [];
             if(paths.length) {
@@ -145,15 +139,12 @@ export const actionGetFilms = (paths) => {
 
         } catch (error) {
             dispatch(setError(error));
-        } finally {
-            dispatch(setCharactersLoading(false));
         }
     }
 }
 
 export const actionGetSpecies = (paths) => {
     return async (dispatch) => {
-        dispatch(setCharactersLoading(true));
         try {
             let species = [];
             if(paths.length) {
@@ -163,8 +154,6 @@ export const actionGetSpecies = (paths) => {
 
         } catch (error) {
             dispatch(setError(error));
-        } finally {
-            dispatch(setCharactersLoading(false));
         }
     }
 }

@@ -13,10 +13,6 @@ import {
 class App extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state={
-        }
-
         this.handlePageChange = this.handlePageChange.bind(this);
     }
 

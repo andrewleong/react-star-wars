@@ -16,6 +16,7 @@ import {
     actionGetFilms,
     actionGetSpecies,
     actionGetCharacter,
+    setLoading,
 } from '../redux/actions';
 
 class CharacterDetail extends React.Component {
@@ -234,6 +235,7 @@ class CharacterDetail extends React.Component {
                 this.props.getFilms(films),
                 this.props.getSpecies(species)
             ]);
+            this.props.setLoading(false);
         }
     }
 }
@@ -255,7 +257,8 @@ const mapDispatchToProps = dispatch => ({
     getCharacter: (id, existingCharacter) => dispatch(actionGetCharacter(id, existingCharacter)),
     getHomeWorld: (path) => dispatch(actionGetHomeWorld(path)),
     getFilms: (paths) => dispatch(actionGetFilms(paths)),
-    getSpecies: (paths) => dispatch(actionGetSpecies(paths))
+    getSpecies: (paths) => dispatch(actionGetSpecies(paths)),
+    setLoading: (loading) => dispatch(setLoading(loading))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterDetail);
