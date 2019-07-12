@@ -15,9 +15,14 @@ const CharacterItem = ({ character, id }) => {
 
     return (
         <div className="col-sm-12 character-item-container">
-            <Link to={`/character/${id}`}>
-                <div className="card each-card">
-                    {getGender(character.gender)}
+            <Link to={{
+                pathname: `/character/${id}`,
+                state: {name: character.name}
+            }}>
+                <div className="card">
+                    <div className="icon">
+                        {getGender(character.gender)}
+                    </div>
                     <h3>{character.name}</h3>
                     <h4>{character.birth_year}</h4>
                 </div>

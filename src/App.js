@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { CylinderSpinLoader } from 'react-css-loaders';
+import _ from 'underscore';
 
 import CharacterList from './components/CharacterList';
 
@@ -12,29 +13,34 @@ import {
 class App extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state={
-        }
-
         this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     handlePageChange({ selected }) {
         const currentPage = selected + 1;
-        this.props.getCharacters(currentPage);
+        if(currentPage !== this.props.currentPage){
+            this.props.getCharacters(currentPage);
+        }
     }
 
     render() {
-        const { characters, totalPages, currentPage, isLoading } = this.props;
+        const { characters, totalPages, currentPage, isLoading, error } = this.props;
         return (
             <div className="container">
                 { isLoading &&
                     <div className="loader-spinner">
                         <div className="overlay"></div>
-                        <CylinderSpinLoader />
+                        <CylinderSpinLoader color={'#80e7ee'} />
                     </div>
                 }
-                <h1>Star Wars Characters!</h1>
+                {
+                    error &&
+                    <div className="alert alert-danger alert-dismissible">
+                        <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{`Server returned with ${error}, please refresh the page.`}</strong>
+                    </div>
+                }
+                <h1>List Of Star Wars Characters</h1>
                 <CharacterList characters={characters} />
                 <ReactPaginate
                     initialPage={currentPage-1}
@@ -55,17 +61,20 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getCharacters();
+        if(_.isEmpty(this.props.characters)){
+            this.props.getCharacters();
+        }
     }
 }
 
 const mapStateToProps = state => {
-    const { characters, totalPages, currentPage, isLoading } = state;
+    const { characters, totalPages, currentPage, isLoading, error } = state;
     return {
         characters,
         totalPages,
         currentPage,
         isLoading,
+        error,
     };
 }
 
