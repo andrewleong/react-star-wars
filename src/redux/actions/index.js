@@ -24,10 +24,10 @@ export const setCharacters = (characters) => {
     }
 };
 
-export const SET_CHARACTERS_ERROR = 'SET_CHARACTERS_ERROR';
-export const setCharactersError = (error) => {
+export const SET_ERROR = 'SET_ERROR';
+export const setError = (error) => {
     return {
-        type: SET_CHARACTERS_ERROR,
+        type: SET_ERROR,
         error
     }
 };
@@ -93,7 +93,7 @@ export const actionGetCharacters = (currentPage) => {
             dispatch(setCurrentPage(currentPage));
 
         } catch (error) {
-            dispatch(setCharactersError(error));
+            dispatch(setError(error));
         } finally {
             dispatch(setCharactersLoading(false));
         }
@@ -111,7 +111,7 @@ export const actionGetCharacter = (id, existingCharacter) => {
             dispatch(setCharacter(character));
 
         } catch (error) {
-            dispatch(setCharactersError(error));
+            dispatch(setError(error));
         } finally {
             dispatch(setCharactersLoading(false));
         }
@@ -126,7 +126,7 @@ export const actionGetHomeWorld = (path) => {
             dispatch(setHomeWorld(homeWorld));
 
         } catch (error) {
-            dispatch(setCharactersError(error));
+            dispatch(setError(error));
         } finally {
             dispatch(setCharactersLoading(false));
         }
@@ -144,7 +144,7 @@ export const actionGetFilms = (paths) => {
             dispatch(setFilms(films));
 
         } catch (error) {
-            dispatch(setCharactersError(error));
+            dispatch(setError(error));
         } finally {
             dispatch(setCharactersLoading(false));
         }
@@ -162,7 +162,7 @@ export const actionGetSpecies = (paths) => {
             dispatch(setSpecies(species));
 
         } catch (error) {
-            dispatch(setCharactersError(error));
+            dispatch(setError(error));
         } finally {
             dispatch(setCharactersLoading(false));
         }

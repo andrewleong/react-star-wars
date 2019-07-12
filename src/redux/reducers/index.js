@@ -1,7 +1,7 @@
 import {
     SET_CHARACTERS_LOADING,
     SET_CHARACTERS,
-    SET_CHARACTERS_ERROR,
+    SET_ERROR,
     SET_TOTAL_PAGES,
     SET_CURRENT_PAGE,
     SET_CHARACTER,
@@ -18,7 +18,8 @@ const INITIAL_STATE = {
     isLoading: false,
     homeWorld: {},
     films: [],
-    species: []
+    species: [],
+    error: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -84,6 +85,14 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 species
+            }
+        }
+
+        case SET_ERROR: {
+            const { error } = action;
+            return {
+                ...state,
+                error
             }
         }
 

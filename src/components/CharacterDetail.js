@@ -30,7 +30,8 @@ class CharacterDetail extends React.Component {
             films,
             homeWorld,
             species,
-            isLoading
+            isLoading,
+            error,
         } = this.props;
 
         const getGender = (gender) => {
@@ -49,6 +50,13 @@ class CharacterDetail extends React.Component {
                     <div className="loader-spinner">
                         <div className="overlay"></div>
                         <CylinderSpinLoader color={'#80e7ee'} />
+                    </div>
+                }
+                {
+                    error &&
+                    <div className="alert alert-danger alert-dismissible">
+                        <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{`Server returned with ${error}, please refresh the page.`}</strong>
                     </div>
                 }
                 <header className="header">
@@ -231,14 +239,15 @@ class CharacterDetail extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const { characters, character, films, species, homeWorld, isLoading } = state;
+    const { characters, character, films, species, homeWorld, isLoading, error } = state;
     return {
         characters,
         character,
         films,
         species,
         homeWorld,
-        isLoading
+        isLoading,
+        error,
     };
 }
 

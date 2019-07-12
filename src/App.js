@@ -26,13 +26,20 @@ class App extends React.Component {
     }
 
     render() {
-        const { characters, totalPages, currentPage, isLoading } = this.props;
+        const { characters, totalPages, currentPage, isLoading, error } = this.props;
         return (
             <div className="container">
                 { isLoading &&
                     <div className="loader-spinner">
                         <div className="overlay"></div>
                         <CylinderSpinLoader color={'#80e7ee'} />
+                    </div>
+                }
+                {
+                    error &&
+                    <div className="alert alert-danger alert-dismissible">
+                        <a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{`Server returned with ${error}, please refresh the page.`}</strong>
                     </div>
                 }
                 <h1>List Of Star Wars Characters</h1>
@@ -63,12 +70,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const { characters, totalPages, currentPage, isLoading } = state;
+    const { characters, totalPages, currentPage, isLoading, error } = state;
     return {
         characters,
         totalPages,
         currentPage,
         isLoading,
+        error,
     };
 }
 
