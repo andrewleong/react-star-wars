@@ -47,6 +47,7 @@ class CharacterDetail extends React.Component {
 
         return (
             <div className="character-detail-container">
+
                 { isLoading &&
                     <div className="loader-spinner">
                         <div className="overlay"></div>
@@ -60,6 +61,7 @@ class CharacterDetail extends React.Component {
                         <strong>{`Server returned with ${error}, please refresh the page.`}</strong>
                     </div>
                 }
+
                 <header className="header">
                     <h2>Character Details</h2>
                 </header>
@@ -68,9 +70,12 @@ class CharacterDetail extends React.Component {
                     <div className="icon">
                         {getGender(character.gender)}
                     </div>
+
                     <h3>{character.name}</h3>
+
                     <div className="info-content">
-                        <h4>Birth Year
+                        <h4>
+                            Birth Year
                             <span>
                                 {character.birth_year}
                             </span>
@@ -146,7 +151,6 @@ class CharacterDetail extends React.Component {
 
                                         </div>
                                     </h4>
-
                                     <h4>
                                         Avg Lifespan:
                                         <span className="value">
