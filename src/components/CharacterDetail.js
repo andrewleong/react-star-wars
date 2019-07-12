@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
+import { CylinderSpinLoader } from 'react-css-loaders';
 import {
     FaMars,
     FaVenus,
@@ -28,9 +29,9 @@ class CharacterDetail extends React.Component {
             character,
             films,
             homeWorld,
-            species
+            species,
+            isLoading
         } = this.props;
-        console.log("props", this.props)
 
         const getGender = (gender) => {
             if(gender === 'male'){
@@ -44,6 +45,12 @@ class CharacterDetail extends React.Component {
 
         return (
             <div className="character-detail-container">
+                { isLoading &&
+                    <div className="loader-spinner">
+                        <div className="overlay"></div>
+                        <CylinderSpinLoader color={'#80e7ee'} />
+                    </div>
+                }
                 <header className="header">
                     <h2>Character Details</h2>
                 </header>
@@ -61,7 +68,7 @@ class CharacterDetail extends React.Component {
                         </h4>
                         <h4>
                             Hair Color
-                            <span style={{ background: character.hair_color }}>
+                            <span>
                                 {character.hair_color}
                             </span>
                         </h4>
@@ -128,7 +135,7 @@ class CharacterDetail extends React.Component {
                                     <h4>
                                         Avg Lifespan:
                                         <div className="progress-container">
-                                            <span className="avg-height" style={{width: `${s.average_height}%`}}>
+                                            <span className="avg-height" style={{width: `${s.average_lifespan}%`}}>
                                             </span>
                                             <span>
                                                 {s.average_lifespan === 'indefinite' ? 'indefinite': s.average_lifespan }
@@ -166,7 +173,6 @@ class CharacterDetail extends React.Component {
                             Population:
                             <span>
                                 {homeWorld.population}
-                                people
                             </span>
                         </h4>
                     </div>
@@ -199,28 +205,31 @@ class CharacterDetail extends React.Component {
         const existingCharacter = characters[name];
         const { params={} } = match;
         const { id } = params;
-        await this.props.getCharacter(id, existingCharacter);
+        this.props.getCharacter(id, existingCharacter);
     }
 
     async componentDidUpdate(prevProps){
         const { character } = this.props;
         if(!_.isEqual(prevProps.character, character)){
             const { films, homeworld, species } = character;
-            await this.props.getHomeWorld(homeworld);
-            await this.props.getFilms(films);
-            await this.props.getSpecies(species);
+            await Promise.all([
+                this.props.getHomeWorld(homeworld),
+                this.props.getFilms(films),
+                this.props.getSpecies(species)
+            ]);
         }
     }
 }
 
 const mapStateToProps = state => {
-    const { characters, character, films, species, homeWorld } = state;
+    const { characters, character, films, species, homeWorld, isLoading } = state;
     return {
         characters,
         character,
         films,
         species,
-        homeWorld
+        homeWorld,
+        isLoading
     };
 }
 

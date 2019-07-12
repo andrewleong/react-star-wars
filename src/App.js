@@ -32,10 +32,10 @@ class App extends React.Component {
                 { isLoading &&
                     <div className="loader-spinner">
                         <div className="overlay"></div>
-                        <CylinderSpinLoader />
+                        <CylinderSpinLoader color={'#80e7ee'} />
                     </div>
                 }
-                <h1>Star Wars Characters!</h1>
+                <h1>List Of Star Wars Characters</h1>
                 <CharacterList characters={characters} />
                 <ReactPaginate
                     initialPage={currentPage-1}

@@ -1,11 +1,45 @@
 :root {
     --primary-bg-color: #3f3b54;
     --primary-font-color: #fee123;
+    --card-bg-color: #2e2b3f;
+    --content-bg-color: #221f2e;
 }
 
 body {
     background-color: var(--primary-bg-color);
     color: #fff;
+}
+
+a {
+    color: #FFF;
+}
+
+a:hover a:visited, a:link, a:active {
+    text-decoration: none;
+    outline: none;
+    color: #80e7ee !important;
+}
+
+span {
+    font-size: 0.8em;
+    font-weight: 200;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    color: var(--primary-font-color);
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h2, h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .loader-spinner {
@@ -23,13 +57,13 @@ body {
     top: 0px;
     left: 0px;
     position: fixed;
-    background-color: #fff;
+    background-color: var(--primary-bg-color);
     width: 100%;
     height: 100%;
 }
 
-h1 {
-    color: var(--primary-font-color);
+.loader-spinner .spinner {
+    color: white;
 }
 
 .character-list-container {
@@ -39,10 +73,6 @@ h1 {
     justify-content: center;
 }
 
-.character-item-container {
-    /* margin: 0 auto; */
-}
-
 .card {
     overflow: hidden;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -50,7 +80,7 @@ h1 {
     transition: .25s box-shadow;
     margin-bottom: 20px;
     font-size: 18px;
-    background-color: #2e2b3f;
+    background-color: var(--card-bg-color);
 }
 
 .each-card {
@@ -75,21 +105,11 @@ li {
 
 
 .character-detail-container {
-    background: #221f2e;
-
-    /* margin: 100px; */
+    background: var(--content-bg-color);
     max-width: 900px;
     margin: 10px auto;
-    /* max-width: 1180px;
-    border-radius: 20px;
-    margin-top: 30px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around; */
-
-    display: flex;
-    flex-flow: row wrap;
-    /* text-align: center; */
 }
 
 .character-detail-container > * {
@@ -99,14 +119,14 @@ li {
 
 
 .character-detail-container .header {
-    background: #2e2b3f;
+    background: var(--card-bg-color);
     padding: 20px;
 }
 
 .character-content {
     padding: 5px;
     margin: auto;
-    background: #2e2b3f;
+    background: var(--card-bg-color);
 
     border-radius: 20px;
 
@@ -129,10 +149,6 @@ li {
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
-
-    /* background: tomato; */
-   /* flex-basis: 200px;
-   flex-shrink: 3; */
 }
 
 .character-detail-container .icon {
@@ -159,17 +175,6 @@ li {
     width: 100%;
 }
 
-span {
-    font-size: 0.8em;
-    /* width: 20px;
-    height: 20px;
-    margin:auto;
-    display: inline-block;
-    border: 1px solid gray;
-    vertical-align: middle;
-    border-radius: 2px; */
-}
-
 
 .character-content.species {
     margin: 20px;
@@ -178,10 +183,6 @@ span {
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
-
-    /* background: tomato; */
-   /* flex-basis: 200px;
-   flex-shrink: 3; */
 }
 
 .character-content.homeworld {
@@ -197,13 +198,10 @@ span {
     display: flex;
     flex-flow: row wrap;
     padding: 20px;
-    /* justify-content: space-between; */
     align-items:center;
-    /* background: blue; */
 }
 
 .character-content.homeworld .mini-square {
-    /* background: red; */
     padding-right: 20px;
 }
 
@@ -250,16 +248,4 @@ span {
     border-radius: 8px;
     background: #ffa7b7;
 }
-
-
-.circle {
-    position: relative;
-    top: 5px;
-    left: 5px;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    background: red;
-  }
 
