@@ -155,7 +155,7 @@ class CharacterDetail extends React.Component {
                                         <div className="progress-container">
                                             <span
                                                 className="avg-height"
-                                                style={{width: `${s.average_lifespan === 'indefinite' ? '0' : s.average_lifespan*100/200}%`}}
+                                                style={{width: `${s.average_lifespan === 'indefinite' || s.average_lifespan === 'unknown' ? '0' : s.average_lifespan*100/200}%`}}
                                             >
                                             </span>
                                         </div>
@@ -163,6 +163,12 @@ class CharacterDetail extends React.Component {
                                 </div>
                             )
                         })
+                    }
+                    {
+                        !species.length &&
+                        <h4>
+                            Unknown
+                        </h4>
                     }
                 </div>
 
@@ -235,6 +241,8 @@ class CharacterDetail extends React.Component {
                 this.props.getFilms(films),
                 this.props.getSpecies(species)
             ]);
+            this.props.setLoading(false);
+        } else {
             this.props.setLoading(false);
         }
     }

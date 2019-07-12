@@ -18,7 +18,9 @@ class App extends React.Component {
 
     handlePageChange({ selected }) {
         const currentPage = selected + 1;
-        this.props.getCharacters(currentPage);
+        if(currentPage !== this.props.currentPage){
+            this.props.getCharacters(currentPage);
+        }
     }
 
     render() {
