@@ -155,7 +155,7 @@ class CharacterDetail extends React.Component {
                                         <div className="progress-container">
                                             <span
                                                 className="avg-height"
-                                                style={{width: `${s.average_lifespan === 'indefinite' ? '0' : s.average_lifespan*100/120}%`}}
+                                                style={{width: `${s.average_lifespan === 'indefinite' ? '0' : s.average_lifespan*100/200}%`}}
                                             >
                                             </span>
                                         </div>
