@@ -87,8 +87,7 @@ li {
 .character-list-container {
     background-color:var(--content-bg-color);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     border-radius: 50px;
     padding: 40px;
 }
@@ -101,11 +100,16 @@ li {
     margin-bottom: 20px;
     font-size: 18px;
     background-color: var(--card-bg-color);
-}
-
-.each-card {
     width: 200px;
     height: 200px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.character-item-container .icon {
+    font-size: 1em;
 }
 
 .character-detail-container {
@@ -165,19 +169,19 @@ li {
     display: flex;
     flex-flow: row wrap;
     padding: 20px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .square h4 {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
+    width: 200px;
 }
 
 .square span {
     width: 100%;
 }
-
 
 .character-content.species {
     margin: 20px;
@@ -186,6 +190,10 @@ li {
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
+}
+
+.character-content.species span {
+    padding:10px;
 }
 
 .character-content.homeworld {

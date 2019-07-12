@@ -19,8 +19,10 @@ const CharacterItem = ({ character, id }) => {
                 pathname: `/character/${id}`,
                 state: {name: character.name}
             }}>
-                <div className="card each-card">
-                    {getGender(character.gender)}
+                <div className="card">
+                    <div className="icon">
+                        {getGender(character.gender)}
+                    </div>
                     <h3>{character.name}</h3>
                     <h4>{character.birth_year}</h4>
                 </div>
