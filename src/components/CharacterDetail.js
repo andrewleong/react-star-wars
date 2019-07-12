@@ -129,7 +129,10 @@ class CharacterDetail extends React.Component {
                                             {s.average_height === 'n/a' ? '0%': s.average_height }
                                         </span>
                                         <div className="progress-container">
-                                            <span className="avg-height" style={{width: `${s.average_height*100/272}%`}}>
+                                            <span
+                                                className="avg-height"
+                                                style={{width: `${s.average_height === 'n/a' ? '0' : s.average_height*100/272}%`}}
+                                            >
                                             </span>
 
                                         </div>
@@ -141,7 +144,10 @@ class CharacterDetail extends React.Component {
                                             {s.average_lifespan === 'indefinite' ? 'indefinite': s.average_lifespan }
                                         </span>
                                         <div className="progress-container">
-                                            <span className="avg-height" style={{width: `${s.average_lifespan}%`}}>
+                                            <span
+                                                className="avg-height"
+                                                style={{width: `${s.average_lifespan === 'indefinite' ? '0' : s.average_lifespan*100/120}%`}}
+                                            >
                                             </span>
                                         </div>
                                     </h4>

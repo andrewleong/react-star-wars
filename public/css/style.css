@@ -146,6 +146,7 @@ li {
 .character-content h4 {
     font-weight: bold;
     font-size: 1.2em;
+    padding: 5px 0;
  }
 
 .character-content.main {
