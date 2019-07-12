@@ -191,19 +191,44 @@ span {
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
+    /* justify-content: space-between; */
+
 }
+
+.character-content.homeworld .square {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    /* justify-content: space-between; */
+    align-items:center;
+    /* background: blue; */
+}
+
+.character-content.homeworld .mini-square {
+    /* background: red; */
+    padding-right: 20px;
+}
+
+.character-content.homeworld h2 {
+    align-self: center;
+}
+
+.character-content.homeworld .planet {
+    font-size: 10em;
+}
+
 
 .character-content .films {
     display:flex;
     margin: 20px;
     /* width: 100%; */
     flex-flow: row wrap;
-    align-items: flex-start;
+    /* align-items: flex-start; */
 }
 
 
 .film {
-    flex: 0 0 100%;
+    /* flex: 0 0 100%; */
 
 }
 

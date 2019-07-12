@@ -6,7 +6,8 @@ import {
     FaVenus,
     FaGenderless,
     FaUserCircle,
-    FaFilm
+    FaFilm,
+    FaGlobe,
 } from 'react-icons/fa';
 
 import {
@@ -128,6 +129,8 @@ class CharacterDetail extends React.Component {
                                         Avg Lifespan:
                                         <div className="progress-container">
                                             <span className="avg-height" style={{width: `${s.average_height}%`}}>
+                                            </span>
+                                            <span>
                                                 {s.average_lifespan = 'indefinite' ? 'indefinite': s.average_lifespan }
                                             </span>
                                         </div>
@@ -140,20 +143,33 @@ class CharacterDetail extends React.Component {
 
                 <div className="character-content homeworld">
                     <h3>Home World</h3>
-                    <h4>Name: {homeWorld.name}</h4>
-                    <h4>Climate: {homeWorld.climate}</h4>
-                    <h4>
-                        Diameter
-                        <div className="circle">
-                            {homeWorld.diameter}
+                    <div className="square">
+                        <div className="mini-square">
+                            <h2>{homeWorld.name}</h2>
                         </div>
-                    </h4>
-                    <h4>
-                        Population
-                        <span>
-                            {homeWorld.population}
-                        </span>
-                    </h4>
+                        <div className="planet">
+                            <FaGlobe />
+                        </div>
+                    </div>
+
+                    <div className="square">
+                        <h4>Climate: <span>{homeWorld.climate}</span></h4>
+                        <h4>Gravity: <span>{homeWorld.gravity}</span></h4>
+                        <h4>
+                            Diameter:
+                            <span>
+                                {homeWorld.diameter}
+                                km
+                            </span>
+                        </h4>
+                        <h4>
+                            Population:
+                            <span>
+                                {homeWorld.population}
+                                people
+                            </span>
+                        </h4>
+                    </div>
                 </div>
 
                 <div className="character-content">
