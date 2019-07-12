@@ -187,11 +187,9 @@ span {
 .character-content.homeworld {
     margin: 20px;
     display:flex;
-    /* flex: 1; */
     flex-flow: row wrap;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
 
 }
 
@@ -215,21 +213,24 @@ span {
 
 .character-content.homeworld .planet {
     font-size: 10em;
+    color: #05dcdf;
 }
 
-
-.character-content .films {
+.character-content.films {
     display:flex;
     margin: 20px;
-    /* width: 100%; */
+    flex-direction: column;
     flex-flow: row wrap;
-    /* align-items: flex-start; */
+    justify-content: center;
 }
 
-
 .film {
-    /* flex: 0 0 100%; */
-
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 10px 0;
 }
 
 .progress-container {
@@ -247,7 +248,7 @@ span {
     height: 10px;
     max-width: 100%;
     border-radius: 8px;
-    background: #829bef;
+    background: #ffa7b7;
 }
 
 

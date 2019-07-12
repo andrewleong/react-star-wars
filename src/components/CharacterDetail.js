@@ -119,8 +119,8 @@ class CharacterDetail extends React.Component {
                                     <h4>
                                         Avg Height:
                                         <div className="progress-container">
-                                            <span className="avg-height" style={{width: `${s.average_height}%`}}>
-                                                {s.average_height = 'n/a' ? '0%': s.average_height }
+                                            <span className="avg-height" style={{width: `${s.average_height*100/272}%`}}>
+                                                {s.average_height === 'n/a' ? '0%': s.average_height }
                                             </span>
                                         </div>
                                     </h4>
@@ -131,7 +131,7 @@ class CharacterDetail extends React.Component {
                                             <span className="avg-height" style={{width: `${s.average_height}%`}}>
                                             </span>
                                             <span>
-                                                {s.average_lifespan = 'indefinite' ? 'indefinite': s.average_lifespan }
+                                                {s.average_lifespan === 'indefinite' ? 'indefinite': s.average_lifespan }
                                             </span>
                                         </div>
                                     </h4>
@@ -172,13 +172,13 @@ class CharacterDetail extends React.Component {
                     </div>
                 </div>
 
-                <div className="character-content">
+                <div className="character-content films">
                     <h3>Films</h3>
                     {
                         films && films.map((film, index) => {
                             return (
-                                <div className="films" key={index}>
-                                    <div className="film">
+                                <div className="film" key={index}>
+                                    <div className="icon">
                                         <FaFilm />
                                     </div>
                                     <h4>{film.title}</h4>
